@@ -1,1 +1,20 @@
 
+version: '3.8'
+
+services:
+  hrms-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hrms-web:latest
+    container_name: hrms_web_app
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
